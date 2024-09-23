@@ -1,29 +1,44 @@
 /* General styling */
 .landing-page {
     font-family: 'Roboto', sans-serif;
-    background-color: #f7fafc;
+    background-color: #f7fafc; /* Main background color */
     color: #333;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative; /* To position the SVG */
+}
+
+.landing-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Send it behind other content */
+    background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><pattern id="circuit-pattern" patternUnits="userSpaceOnUse" width="100" height="100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="%23f0f4f8" /><path d="M10,10 L10,90 M10,10 L90,10 M90,10 L90,90 M10,90 L90,90" stroke="%2300a8e8" stroke-width="2" /><path d="M30,30 L30,70 M30,30 L70,30 M70,30 L70,70 M30,70 L70,70" stroke="%2300a8e8" stroke-width="2" /></pattern></defs><rect width="100%" height="100%" fill="url(%23circuit-pattern)" /></svg>');
+    opacity: 0.1; /* Adjust the opacity for a subtle effect */
 }
 
 /* Header styling */
 .landing-header {
     display: flex;
     align-items: center;
-    background-color: #343a40;
+    justify-content: space-between; /* Ensure space between logo and navbar */
+    background: linear-gradient(90deg, #0d1b2a, #1b2631);
     padding: 10px 5%;
     color: white;
     border-bottom: 4px solid #00a8e8;
-    justify-content: space-between;
 }
 
+/* Logo Styling */
 .logo {
     display: flex;
-    align-items: center;
-    flex: 1;
+    align-items: center; /* Align logo items vertically */
+    justify-content: flex-start;
+    flex: 0.5; /* Give the logo space to the left */
 }
 
 .logo-image {
@@ -35,141 +50,286 @@
     font-size: 24px;
     font-weight: bold;
     color: #00a8e8;
-}
-
-/* Centering navigation links */
-.navbar {
-    flex: 2;
     display: flex;
-    justify-content: center;
 }
 
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: center; /* Horizontally centers the nav-links */
+    align-items: center; /* Vertically centers the nav-links */
+    flex-grow: 1; /* Ensures the navbar takes up available space */
+    padding: 15px 0; /* Padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 15px;
+    
+}
+
+/* Nav Links */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
-    margin: 0;
+    gap: 30px; /* Increased gap for better spacing */
+    margin: 0; /* Remove margin for a cleaner look */
     padding: 0;
 }
 
 .nav-links li {
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px; /* Increased font size */
     color: white;
     text-transform: uppercase;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+    display: flex;
+    align-items: center; /* Vertically centers the text inside the list items */
 }
 
+/* Hover effect for nav links */
 .nav-links li:hover {
     color: #00a8e8;
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
-/* Login buttons styling */
+/* Login Buttons Styling */
 .login-buttons {
     display: flex;
-    gap: 10px;
+    gap: 15px; /* Increased gap for better spacing */
     flex: 1;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Push login buttons to the right */
 }
 
 .admin-login, .customer-login {
     background-color: white;
     color: #007bff;
-    padding: 8px 15px;
+    padding: 10px 20px; /* Increased padding for a more substantial look */
     border: none;
-    border-radius: 4px;
+    border-radius: 25px; /* More rounded corners for a modern feel */
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
 }
 
 .admin-login:hover, .customer-login:hover {
     background-color: #007bff;
     color: white;
+    transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
-/* Moving Image Section */
-.moving-image-section {
+/* Hero Section Styling */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     height: 400px;
-    overflow: hidden;
-    margin-bottom: 40px;
+    padding: 60px 10%;
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+    color: black;
+    text-align: left;
+    margin-top: 80px;
+}
+.hero-content {
+    flex: 1;
+    max-width: 50%;
 }
 
-.moving-image {
-    width: 100%;
-    height: 100%;
+.hero-title {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #00a8e8;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10;
+}
+.cta-button-2 {
+    background-color: #013b4f;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10;
+    margin-left: 20px;
+}
+/* Hero Image Styling */
+.hero-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden; /* Hide overflow to prevent image from showing before animation */
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     object-fit: cover;
-    animation: moveImage 10s linear infinite;
+    transform: translateX(100%); /* Start off-screen */
+    animation: slideIn 1s forwards; /* Slide in animation */
+}
+.carousel {
+    position: relative;
+    width: 400px; /* Adjust width as needed */
+    height: 300px; /* Adjust height as needed */
+    overflow: hidden;
+    border-radius: 10px; /* Rounded corners */
 }
 
-@keyframes moveImage {
-    0% {
-        transform: scale(1);
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.carousel-image {
+    min-width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.carousel-image.active {
+    opacity: 1; /* Show active image */
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(100%); /* Start from the right */
     }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
+    to {
+        transform: translateX(0); /* End in the original position */
     }
 }
 
 .about-section {
     display: flex;
-    padding: 50px 10%;
+    padding: 60px 5%; /* Increase padding for a more spacious feel */
     background-color: #f0f4f8;
     align-items: center;
     justify-content: space-between;
-    gap: 40px; /* Add spacing between image and text */
+    gap: 40px; /* Maintain spacing between image and text */
+    border-radius: 15px; /* Rounded corners for a softer look */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .about-content {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 40px; /* Ensure there's space between the image and text */
+    gap: 40px; /* Space between image and text */
 }
 
 .about-image-container {
-    flex: 1; /* Make sure image container takes up the space */
+    flex: 1;
+    max-width: 400px; /* Set a max width for better responsiveness */
 }
 
 .about-image {
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto; /* Ensure aspect ratio is maintained */
+    border-radius: 15px; /* Rounded corners to match section */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     object-fit: cover; /* Ensure the image fits the container */
+    transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+.about-image:hover {
+    transform: scale(1.05); /* Subtle zoom effect on hover */
 }
 
 .about-text {
-    flex: 2; /* Make sure text container takes up more space */
+    flex: 2;
 }
 
 .about-text h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 36px; 
+    margin-bottom: 50px;
+    color: #007bff; 
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
+
 .about-text p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 0;
+    font-size: 20px; /* Font size */
+    line-height: 1.8; /* Increased line height for readability */
+    margin-bottom: 20px; /* Add margin at the bottom for spacing */
+    color: #333; /* Darker color for better contrast */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly off-white background for contrast */
+    padding: 15px; /* Padding for better spacing */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition effect */
 }
+
+.about-text p:hover {
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column; /* Stack on smaller screens */
+        text-align: center; /* Center text for better alignment */
+    }
+
+    .about-image-container {
+        margin-bottom: 20px; /* Space below the image */
+    }
+}
+
 
 /* Services Section */
 .services-section {
-    padding: 50px 10%;
-    background-color: #e0f7fa;
+    padding: 60px 10%;
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%); /* Add subtle gradient */
     text-align: center;
+    border-radius: 20px; /* Add rounded corners for a modern touch */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
+    transition: all 0.3s ease-in-out;
+}
+
+.services-section:hover {
+    transform: translateY(-10px); /* Add slight hover effect to the section */
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
 }
 
 .services-section h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 36px; /* Slightly larger heading for impact */
+    margin-bottom: 50px;
+    color: #007bff; /* Modern accent color */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* More spaced-out letters for a modern look */
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
+.services-section h2::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background-color: #00a8e8;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.dropDown {
+    display:flex;
+    justify-content: center;
+}
 .catalog {
     display: flex;
     justify-content: center;
@@ -217,45 +377,60 @@
 
 /* Footer styling */
 .landing-footer {
-    background-color: #343a40;
+    background-color: #0d1b2a;
     color: white;
-    padding: 20px;
+    padding: 40px 5%; 
     display: flex;
-    justify-content: space-around;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: space-between; 
+    align-items: flex-start; 
+    flex-wrap: wrap; 
+    border-top: 2px solid #00a8e8; 
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Footer Column Styling */
 .footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
     text-align: left;
 }
 
+/* Footer Headings */
 .footer-column h3 {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #00a8e8; 
+    font-weight: bold; 
 }
 
+/* Footer List */
 .footer-column ul {
     list-style-type: none;
     padding: 0;
 }
 
 .footer-column li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .footer-column a {
-    color: white;
+    color: #f0f4f8;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .footer-column a:hover {
+    color: #00a8e8;
     text-decoration: underline;
 }
 
+/* Footer Paragraph */
 .footer-column p {
     margin: 5px 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
 }
-/* Add card-specific styles */
 /* General Styling for Catalog Section */
 .catalog {
     display: flex;
@@ -369,3 +544,66 @@
     }
   }
   
+  .customer-reviews-section {
+    padding: 50px 10%;
+    background-color: #f0f4f8; /* Light background for contrast */
+    text-align: center; /* Center the text */
+}
+
+.customer-reviews-section h2 {
+    font-size: 36px; 
+    margin-bottom: 50px;
+    color: #007bff; /* Modern accent color */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; 
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px; 
+}
+.customer-reviews-section h2::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background-color: #00a8e8;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.reviews-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between review cards */
+    flex-wrap: wrap; /* Allow wrapping of cards */
+}
+
+.review-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px; /* Limit the card width */
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.review-text {
+    font-size: 16px;
+    color: #333; /* Dark text for readability */
+    margin-bottom: 15px; /* Space below the text */
+}
+
+.customer-name {
+    font-size: 18px;
+    font-weight: bold; /* Make the name stand out */
+    color: #007bff; /* Accent color */
+}
+
+.customer-rating {
+    color: #FFD700; /* Gold color for stars */
+    font-size: 18px; /* Size for the rating */
+}

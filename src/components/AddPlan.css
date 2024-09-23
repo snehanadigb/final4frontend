@@ -1,0 +1,98 @@
+/* Container styling */
+.container {
+    max-width: 900px; 
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  } 
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Title and Subtitle */
+  .title {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .subtitle {
+    font-size: 24px;
+    color: #4CAF50;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  /* Form Group Styling */
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  /* Horizontal alignment for multiple inputs */
+  .form-group-row {
+    display: flex;
+    justify-content: space-between; /* Spread items evenly */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  }
+  
+  .form-group-row .form-group {
+    flex: 1; /* Allow each input to grow equally */
+    min-width: 100px; /* Minimum width to avoid squishing */
+    margin-right: 10px; /* Space between columns */
+  }
+  
+  .form-group-row .form-group:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+  }
+  
+  .input, .textarea, .select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  /* Error state for input fields */
+  .input-error {
+    border-color: red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+  

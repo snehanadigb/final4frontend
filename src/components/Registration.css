@@ -1,103 +1,155 @@
-/* Full page background and layout matching CustomerLogin */
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .registration-page {
-    display: flex;
+/* General styling for the page */
+.registration-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
+  padding: 20px;
+}
+.registration-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
+  padding: 20px;
+}
+/* Two-column layout: Left content and Right form */
+.registration-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.left-column {
+  flex: 1;
+  background-color: #4caf50; /* You can adjust this color */
+  color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-column img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.left-column h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.left-column p {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Right column for the form */
+.right-column {
+  flex: 2;
+  padding: 40px;
+}
+
+/* Form styling */
+.registration-main {
+  background: #fff;
+  padding: 0;
+}
+
+.progress-bar-wrapper {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 8px;
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.step-label {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.registration-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  width:200%;
+}
+
+.registration-form h2 {
+  text-align: center;
+  color: #333;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Full width input for each field */
+.registration-form input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.registration-form input:focus {
+  border-color: #4caf50;
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .registration-container {
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
-    background-color: #f7fafc; /* Same background color as CustomerLogin */
   }
-  
-  /* Header styling matching CustomerLogin */
-  .login-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #4caf50;
-    padding: 10px;
-    color: white;
-    border-bottom: 4px solid #3e8e41;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-image {
-    width: 40px;
-    margin-right: 10px;
-  }
-  
-  .company-name {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  /* Main registration form styling */
-  .registration-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    flex-grow: 1;
-  }
-  
-  .registration-form {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  /* Input fields styling */
-  .registration-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-  
-  /* Button styling */
-  .submit-button {
-    background-color: #4caf50 !important;
-    color: white;
-    padding: 12px 20px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
+
+  .left-column, .right-column {
+    flex: none;
     width: 100%;
   }
-  
-  .submit-button:hover {
-    background-color: #45a049 !important;
-  }
-  
-  /* Error message styling */
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .registration-form {
-      padding: 30px;
-      max-width: 90%;
-    }
-  }
-  
+}

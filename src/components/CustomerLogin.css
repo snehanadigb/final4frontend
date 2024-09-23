@@ -17,12 +17,12 @@ body, html {
   /* Header styling centered */
   .login-header {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
-    background-color: #333;
-    padding: 10px;
+    justify-content: space-between; /* Ensure space between logo and navbar */
+    background: linear-gradient(90deg, #0d1b2a, #1b2631);
+    padding: 10px 5%;
     color: white;
-    border-bottom: 4px solid #3e8e41;
+    border-bottom: 4px solid #00a8e8;
   }
   
   .logo {

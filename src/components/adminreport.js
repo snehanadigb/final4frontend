@@ -2,43 +2,45 @@ import React, { useState, useEffect, useRef } from 'react';
 import html2pdf from 'html2pdf.js';
 import Chart from 'chart.js/auto';
 
-const AdminReport = () => {
+const AdminReport = React.forwardRef((props, ref) => {
   const [pendingCustomers, setPendingCustomers] = useState([]);
   const [verifiedCustomers, setVerifiedCustomers] = useState([]);
   const [activatedCustomers, setActivatedCustomers] = useState([]);
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
-  const reportContentRef = useRef(null); // Reference to the report content
-  const [chartImage, setChartImage] = useState(null); // To hold chart image
+  const reportContentRef = useRef(null);
+  const [chartImage, setChartImage] = useState(null);
 
   useEffect(() => {
     // Fetch Pending, Verified, and Activated Customers
-    fetch('http://localhost:5004/services/get-pending-customers')
-      .then((response) => response.json())
-      .then((data) => setPendingCustomers(data))
-      .catch((error) => console.error('Error fetching pending customers:', error));
-
-    fetch('http://localhost:5004/services/get-verified-customers')
-      .then((response) => response.json())
-      .then((data) => setVerifiedCustomers(data))
-      .catch((error) => console.error('Error fetching verified customers:', error));
-
-    fetch('http://localhost:5004/services/get-activated-customers')
-      .then((response) => response.json())
-      .then((data) => setActivatedCustomers(data))
-      .catch((error) => console.error('Error fetching activated customers:', error));
+    fetchCustomersData();
   }, []);
 
-  // Function to create the chart
+  const fetchCustomersData = async () => {
+    try {
+      const pendingResponse = await fetch('http://localhost:5004/services/get-pending-customers');
+      const verifiedResponse = await fetch('http://localhost:5004/services/get-verified-customers');
+      const activatedResponse = await fetch('http://localhost:5004/services/get-activated-customers');
+
+      const pendingData = await pendingResponse.json();
+      const verifiedData = await verifiedResponse.json();
+      const activatedData = await activatedResponse.json();
+
+      setPendingCustomers(pendingData);
+      setVerifiedCustomers(verifiedData);
+      setActivatedCustomers(activatedData);
+    } catch (error) {
+      console.error('Error fetching customer data:', error);
+    }
+  };
+
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');
 
-    // Destroy existing chart instance if it exists
     if (chartInstanceRef.current) {
       chartInstanceRef.current.destroy();
     }
 
-    // Create a new chart instance
     chartInstanceRef.current = new Chart(ctx, {
       type: 'pie',
       data: {
@@ -67,10 +69,9 @@ const AdminReport = () => {
     // Generate chart image after rendering
     setTimeout(() => {
       const chartBase64Image = chartInstanceRef.current.toBase64Image();
-      setChartImage(chartBase64Image); // Set chart image to state
-    }, 500); // Wait for chart rendering
+      setChartImage(chartBase64Image);
+    }, 500);
 
-    // Cleanup chart instance on component unmount
     return () => {
       if (chartInstanceRef.current) {
         chartInstanceRef.current.destroy();
@@ -78,11 +79,12 @@ const AdminReport = () => {
     };
   }, [pendingCustomers, verifiedCustomers, activatedCustomers]);
 
+  // PDF generation function
   const generatePDF = () => {
     const element = reportContentRef.current;
     if (!element) {
       console.error("Report content reference is null");
-      return; // Exit if the reference is null
+      return;
     }
 
     const options = {
@@ -92,7 +94,6 @@ const AdminReport = () => {
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
 
-    // Create PDF
     html2pdf()
       .from(element)
       .set(options)
@@ -101,16 +102,16 @@ const AdminReport = () => {
       .catch(err => console.error("Error generating PDF:", err));
   };
 
-  // Get current date and time
+  // Expose the PDF generation method
+  React.useImperativeHandle(ref, () => ({
+    generatePDF,
+  }));
+
   const currentDate = new Date().toLocaleString();
 
   return (
-    <div>
-      <h1>Admin Report</h1>
-      <button onClick={generatePDF}>Download Report</button>
-
-      {/* Visible report content */}
-      <div ref={reportContentRef} style={{ padding: '20px', border: '1px solid #ddd', backgroundColor: '#fff' }}>
+    <div ref={reportContentRef} style={{ display: 'none' }}>
+      <div style={{ padding: '20px', border: '1px solid #ddd', backgroundColor: '#fff' }}>
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           <h2>Customer Report</h2>
           <p>Generated on: {currentDate}</p>
@@ -129,7 +130,7 @@ const AdminReport = () => {
             </tr>
           </thead>
           <tbody>
-            {pendingCustomers.map((customer) => (
+            {pendingCustomers.map(customer => (
               <tr key={customer.id}>
                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{customer.id}</td>
                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{customer.name}</td>
@@ -154,7 +155,7 @@ const AdminReport = () => {
             </tr>
           </thead>
           <tbody>
-            {verifiedCustomers.map((customer) => (
+            {verifiedCustomers.map(customer => (
               <tr key={customer.id}>
                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{customer.id}</td>
                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{customer.name}</td>
@@ -179,7 +180,7 @@ const AdminReport = () => {
             </tr>
           </thead>
           <tbody>
-            {activatedCustomers.map((customer) => (
+            {activatedCustomers.map(customer => (
               <tr key={customer.id}>
                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{customer.id}</td>
                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{customer.name}</td>
@@ -194,14 +195,14 @@ const AdminReport = () => {
         {/* Chart */}
         <div style={{ textAlign: 'center' }}>
           <h3>Customer Status Chart</h3>
-          {chartImage && <img src={chartImage} alt="Customer Chart" />} {/* Display chart image */}
+          {chartImage && <img src={chartImage} alt="Customer Chart" />}
         </div>
       </div>
-
-      {/* Canvas element for chart */}
+      
+      {/* Hidden chart canvas for rendering */}
       <canvas ref={chartRef} style={{ display: 'none' }}></canvas>
     </div>
   );
-};
+});
 
 export default AdminReport;

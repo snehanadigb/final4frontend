@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './landingpage.css';
+import { TypeAnimation } from 'react-type-animation';
 import logo from './Copy of T.png'; // Replace with your actual logo image path
-import movingImage from './one.jpg'; // Replace with your actual moving image path
+import HeroImage from './one.jpg'; // Replace with your actual moving image path
 import aboutImage from './two.jpeg'; // Replace with your actual About Us image path
 
 const LandingPage = () => {
@@ -47,6 +48,9 @@ const LandingPage = () => {
     navigate('/admin-login');
   };
 
+  const handleCustomerRegister = () => {
+    navigate('/register');
+  };
   const handleCustomerLogin = () => {
     navigate('/customer-login');
   };
@@ -72,10 +76,35 @@ const LandingPage = () => {
         </div>
       </header>
 
-      {/* Moving Image Section */}
-      <section className="moving-image-section">
-        <img src={movingImage} alt="Moving Visual" className="moving-image" />
-      </section>
+      {/* Hero Section */}
+      <section class="hero-section">
+        <div class="hero-content">
+        <h1 class="hero-title">
+                    <TypeAnimation
+                  sequence={[
+                    // Same substring at the start will only be typed out once, initially
+                    'Welcome to Inditel !!',
+                    1000,
+                    'We provide communications and services',
+                    1000,
+                    'We offer the best Plans',
+                    1000
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                />
+            </h1>
+            <p class="hero-subtitle">Join us today and explore amazing opportunities!</p>
+            <button class="cta-button" onClick={handleCustomerRegister}>Get Started</button>
+            <button class="cta-button-2" onClick={() => window.scrollTo(0, document.getElementById('services-section').offsetTop)}>Browse Plans</button>
+        </div>
+        <div class="hero-image-container">
+        <img src={HeroImage} alt="About Us" className="about-image" />
+            </div>
+     </section>
+
+
 
       {/* About Us Section */}
       <section id="about-section" className="about-section">
@@ -97,11 +126,13 @@ const LandingPage = () => {
         <h2>Our Plans</h2>
 
         {/* Dropdown for selecting plan type */}
+        <div className='dropDown'>
         <select value={planType} onChange={(e) => setPlanType(e.target.value)}>
           <option value="All">All</option>
           <option value="Prepaid">Prepaid</option>
           <option value="Postpaid">Postpaid</option>
         </select>
+        </div>
 
         <div className="catalog">
           {filteredPlans.length > 0 ? (
@@ -110,7 +141,7 @@ const LandingPage = () => {
                 <h3>{plan.name}</h3>
                 <p>{plan.description}</p>
                 <p>Price: ₹{plan.price}</p>
-                <div className="services-included">
+                {/* <div className="services-included">
                   {plan.servicesIncluded?.fiberLandline && (
                     <div>
                       <h4>Fiber + Landline</h4>
@@ -124,7 +155,7 @@ const LandingPage = () => {
                       <p>{plan.servicesIncluded.dth.value}</p>
                     </div>
                   )}
-                </div>
+                </div> */}
                 <button onClick={() => handleCustomerClick(plan.id)}>Register</button>
               </div>
             ))
@@ -134,20 +165,51 @@ const LandingPage = () => {
         </div>
       </section>
 
+{/* reviews section */}
+<section class="customer-reviews-section">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews-container">
+        <div class="review-card">
+            <p class="review-text">"This service has transformed my business! Highly recommend."</p>
+            <h4 class="customer-name">John Doe</h4>
+            <span class="customer-rating">★★★★★</span>
+        </div>
+        <div class="review-card">
+            <p class="review-text">"Excellent support and great products. Will use again!"</p>
+            <h4 class="customer-name">Jane Smith</h4>
+            <span class="customer-rating">★★★★★</span>
+        </div>
+        <div class="review-card">
+            <p class="review-text">"A game-changer in the industry. Fantastic experience."</p>
+            <h4 class="customer-name">Emily Johnson</h4>
+            <span class="customer-rating">★★★★★</span>
+        </div>
+    </div>
+</section>
+
       {/* Footer Section */}
       <footer className="landing-footer">
-        <div className="footer-column">
-          <h3>Contact Us</h3>
-          <p>Phone: 123-456-7890</p>
-          <p>Email: info@inditel.com</p>
-        </div>
-        <div className="footer-column">
-          <h3>Terms and Conditions</h3>
-          <ul>
-            <li><a href="#privacy">Privacy Policy</a></li>
-            <li><a href="#terms">Terms of Service</a></li>
-          </ul>
-        </div>
+              <div class="footer-column">
+                  <h3>About Us</h3>
+                  <ul>
+                      <li><a href="#">Company Info</a></li>
+                      <li><a href="#">Careers</a></li>
+                  </ul>
+              </div>
+              <div class="footer-column">
+                  <h3>Contact</h3>
+                  <ul>
+                      <li><a href="#">Email Us</a></li>
+                      <li><a href="#">Support</a></li>
+                  </ul>
+              </div>
+              <div class="footer-column footer-terms">
+                  <h3>Legal</h3>
+                  <ul>
+                      <li><a href="#">Privacy Policy</a></li>
+                      <li><a href="#">Terms and Conditions</a></li>
+                  </ul>
+              </div>
       </footer>
     </div>
   );

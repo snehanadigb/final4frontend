@@ -1,104 +1,108 @@
-/* AdminRegister.css */
-.register-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(to right, #f7fafc, #e2e2e2); /* Gradient background for the page */
-  }
-  
-  .login-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
-    padding: 10px;
-    color: white;
-    width: 100%;
-    border-bottom: 4px solid #3e8e41;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-image {
-    width: 40px;
-    margin-right: 10px;
-  }
-  
-  .company-name {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .register-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 30px;
-  }
-  
-  .register-form {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  .register-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-  
-  .input-error {
-    border-color: red;
-  }
-  
-  .register-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 20px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-  }
-  
-  .register-button:hover {
-    background-color: #45a049;
-  }
-  
-  .message {
-    color: green;
-    font-size: 16px;
-    margin-top: 10px;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .register-form {
-      padding: 30px;
-      max-width: 90%;
-    }
-  }
-  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.register-container {
+  display: flex;
+  height: 100vh;
+}
+.admin-header {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  justify-content: center; /* Center items horizontally */
+  background: linear-gradient(90deg, #0d1b2a, #1b2631);
+  padding: 10px; /* Add some padding */
+  color: white;
+  border-bottom: 4px solid #00a8e8;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+}
+
+.logo-image {
+  height: 50px; /* Set height to ensure it fits well */
+  margin-right: 10px; /* Space between logo and name */
+}
+
+.company-name {
+  font-size: 1.5em; /* Adjust font size as needed */
+  margin: 0; /* Remove default margin */
+}
+
+.register-left {
+  flex: 1;
+  background-color: #4a90e2; /* Red background color */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* .register-left h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.register-left p {
+  font-size: 1.2em;
+} */
+
+.register-right {
+  flex: 2;
+  background-color: #f5f7fc; /* Light background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-right h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.register-right form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.register-right input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.register-right button {
+  padding: 12px;
+  background-color: #4a90e2;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-right button:hover {
+  background-color: #ff3e47;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}

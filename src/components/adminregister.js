@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './AdminRegister.css'; // Custom CSS for admin registration
+import './AdminRegister.css';
 import logo from './Copy of T.png'; // Same logo as used in AdminLogin
 
 const AdminRegister = () => {
@@ -43,18 +43,24 @@ const AdminRegister = () => {
   };
 
   return (
-    <div className="register-page">
-      {/* Header matching AdminLogin */}
-      <header className="login-header">
-        <div className="logo">
-          <img src={logo} alt="IndiTel Logo" className="logo-image" />
-          <h1 className="company-name">Welcome to IndiTel</h1>
-        </div>
-      </header>
+    <div className="register-container">
+      {/* Left section with text */}
+      <div className="register-left">
+        <header className="admin-header">
+          <div className="logo">
+            <img src={logo} alt="IndiTel Logo" className="logo-image" />
+            <h1 className="company-name">Welcome to IndiTel</h1>
+          </div>
+        </header>
+        <h1>We're holding the door for you!</h1>
+        <p>Login now and manage all your
+           Inditel services</p>
+      </div>
 
-      <main className="register-main">
+      {/* Right section with form */}
+      <div className="register-right">
+        <h2>Admin Registration</h2>
         <form className="register-form" onSubmit={handleRegister}>
-          <h2>Admin Registration</h2>
           <input
             type="text"
             value={name}
@@ -91,7 +97,7 @@ const AdminRegister = () => {
           {message && <p className="message">{message}</p>}
           {!formValid && <p className="error-message">Please correct the errors above</p>}
         </form>
-      </main>
+      </div>
     </div>
   );
 };

@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from './Copy of T.png';
-import './ServiceSelection.css'; // Import the CSS file
+import './ServiceSelection.css'; // Updated CSS
 
 const ServiceSelection = () => {
-  const [selectedPlanId, setSelectedPlanId] = useState(null); // To track the selected plan's id
-  const [serviceType, setServiceType] = useState('All'); // State for filtering by Prepaid/Postpaid/All
-  const [plans, setPlans] = useState([]); // Store plans fetched from the backend
-  const [filteredPlans, setFilteredPlans] = useState([]); // Store filtered plans based on selection
+  const [selectedPlanId, setSelectedPlanId] = useState(null);
+  const [serviceType, setServiceType] = useState('All');
+  const [plans, setPlans] = useState([]);
+  const [filteredPlans, setFilteredPlans] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch plans from the backend when the component mounts
   useEffect(() => {
     const fetchPlans = async () => {
       try {
         const response = await axios.get('http://localhost:5004/services/getplans');
-        setPlans(response.data); // Store the plans from the backend
-        setFilteredPlans(response.data); // Initially, show all plans
+        setPlans(response.data);
+        setFilteredPlans(response.data);
       } catch (error) {
         console.error('Error fetching plans:', error);
       }
@@ -25,14 +24,12 @@ const ServiceSelection = () => {
 
     fetchPlans();
 
-    // Retrieve the selected planId from localStorage (if any)
     const savedPlanId = localStorage.getItem('selectedPlanId');
     if (savedPlanId) {
       setSelectedPlanId(parseInt(savedPlanId));
     }
   }, []);
 
-  // Filter plans based on the selected service type
   useEffect(() => {
     if (serviceType === 'All') {
       setFilteredPlans(plans);
@@ -41,26 +38,24 @@ const ServiceSelection = () => {
     }
   }, [serviceType, plans]);
 
-  // Handle service selection and save it in localStorage
-  const handleServiceSelection = (planId,planName) => {
+  const handleServiceSelection = (planId, planName) => {
     setSelectedPlanId(planId);
     localStorage.setItem('selectedPlanId', planId);
-    localStorage.setItem('selectedName',planName); // Save selected planId in localStorage
+    localStorage.setItem('selectedName', planName);
   };
 
-  // Confirm the selected service and send the information to the backend
   const confirmServiceSelection = async () => {
     try {
       const customerId = localStorage.getItem('customerId');
-      const name=localStorage.getItem('selectedName')
+      const name = localStorage.getItem('selectedName');
       const token = localStorage.getItem('authToken');
 
       await axios.post(
         'http://localhost:5004/services/select-service',
         {
-          planId: selectedPlanId,  // Send planId instead of serviceName
+          planId: selectedPlanId,
           customerId: parseInt(customerId),
-          name:name
+          name: name
         },
         {
           headers: {
@@ -72,15 +67,14 @@ const ServiceSelection = () => {
 
       alert(`Service with Plan ID '${name}' selected successfully!`);
       localStorage.removeItem('customerEmail');
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('selectedName')
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('selectedName');
       navigate('/thank-you');
     } catch (error) {
       alert('There was an error selecting the service.');
     }
   };
 
-  // Navigate to the landing page
   const handleHomeClick = () => {
     navigate('/landing-page');
   };
@@ -114,13 +108,28 @@ const ServiceSelection = () => {
         {filteredPlans.length > 0 ? (
           filteredPlans.map((plan) => (
             <div
-              key={plan.id} // Use plan ID as the unique key
+              key={plan.id}
               className={`service-box ${selectedPlanId === plan.id ? 'service-box-selected' : ''}`}
-              onClick={() => handleServiceSelection(plan.id,plan.name)} // Handle selection by plan ID
+              onClick={() => handleServiceSelection(plan.id, plan.name)}
             >
-              <img src={plan.image} alt={plan.name} className="service-image" />
               <h2 className="service-title">{plan.name}</h2>
               <p className="service-description">{plan.description}</p>
+              <p className="service-price">Price: ₹{plan.price}</p>
+              <div className="services-included">
+                {plan.servicesIncluded?.fiberLandline && (
+                  <div>
+                    <h4>Fiber + Landline</h4>
+                    <p>{plan.servicesIncluded.fiberLandline.speed}</p>
+                    <p>{plan.servicesIncluded.fiberLandline.calls}</p>
+                  </div>
+                )}
+                {plan.servicesIncluded?.dth && (
+                  <div>
+                    <h4>DTH</h4>
+                    <p>{plan.servicesIncluded.dth.value}</p>
+                  </div>
+                )}
+              </div>
               {selectedPlanId === plan.id && <span className="tick-mark">✔</span>}
             </div>
           ))
