@@ -34,6 +34,14 @@ const CustomerLogin = () => {
       console.error('Error during customer login:', error);
     }
   };
+  const handleHomeClick=()=>{
+    localStorage.removeItem('customerEmail');
+    localStorage.removeItem('authToken');
+    navigate('/landing-page');
+  }
+  const handleRegister=()=>{
+    navigate('/register');
+  }
 
   // Redirect to the Forgot Password page
   const handleForgotPassword = () => {
@@ -41,18 +49,26 @@ const CustomerLogin = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="register-container">
       {/* Header matching LandingPage */}
-      <header className="login-header">
-        <div className="logo">
-          <img src={logo} alt="IndiTel Logo" className="logo-image" />
-          <h1 className="company-name">Welcome to IndiTel</h1>
-        </div>
-      </header>
+      <div className="register-left">
+        <header className="admin-header">
+          <div className="logo">
+            <img src={logo} alt="IndiTel Logo" className="logo-image" />
+            <h1 className="company-name">Welcome to IndiTel</h1>
+          </div>
+          <button className="home1-button" onClick={handleHomeClick}>
+          Home
+        </button>
+        </header>
+        <h1>Customer Login</h1>
+        <p>Access your IndiTel account to manage your telecom services and subscriptions</p>
+      </div>
 
+      <div className='register-right'>
       <main className="login-main">
         <form className="login-form" onSubmit={handleLogin}>
-          <h2>Customer Login</h2>
+          
           <input
             type="email"
             value={email}
@@ -71,11 +87,19 @@ const CustomerLogin = () => {
           />
           <button type="submit" className="login-button">Login</button>
           {error && <p className="error-message">{error}</p>}
-        </form>
+        
         <button className="forgot-password-button" onClick={handleForgotPassword}>
           Forgot Password?
         </button>
+        <p className="register-prompt">
+            Not registered?{' '}
+            <span className="register-link" onClick={handleRegister}>
+              Register Now
+            </span>
+          </p>
+          </form>
       </main>
+    </div>
     </div>
   );
 };

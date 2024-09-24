@@ -8,8 +8,10 @@ const ServiceSelection = () => {
   const [selectedPlanId, setSelectedPlanId] = useState(null);
   const [serviceType, setServiceType] = useState('All');
   const [plans, setPlans] = useState([]);
+  const [step, setStep] = useState(4)
   const [filteredPlans, setFilteredPlans] = useState([]);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -49,6 +51,7 @@ const ServiceSelection = () => {
       const customerId = localStorage.getItem('customerId');
       const name = localStorage.getItem('selectedName');
       const token = localStorage.getItem('authToken');
+      setSelectedPlanId(localStorage.getItem('selectPlanId'));
 
       await axios.post(
         'http://localhost:5004/services/select-service',
@@ -76,26 +79,30 @@ const ServiceSelection = () => {
   };
 
   const handleHomeClick = () => {
+    localStorage.removeItem('customerId');
+    localStorage.removeItem('planId');
+    localStorage.removeItem('authToken');
     navigate('/landing-page');
   };
 
   return (
     <div className="container">
+      <div className='first'>
       <header className="header">
         <div className="logo-container">
           <img src={logo} alt="IndiTel Logo" className="logo-image" />
           <h1 className="company-name">Welcome to IndiTel</h1>
         </div>
-        <button className="home-button" onClick={handleHomeClick}>
+        <button className="home1-button" onClick={handleHomeClick}>
           Home
         </button>
       </header>
-
-      <h1 className="title">Telecom Services</h1>
-
+      </div>
+      
+    <div className='service-conatiner'>
       {/* Dropdown for filtering between Prepaid, Postpaid, and All */}
       <select
-        className="service-filter"
+        className="modern-select"
         value={serviceType}
         onChange={(e) => setServiceType(e.target.value)}
       >
@@ -143,6 +150,7 @@ const ServiceSelection = () => {
           Confirm Selection
         </button>
       )}
+    </div>
     </div>
   );
 };

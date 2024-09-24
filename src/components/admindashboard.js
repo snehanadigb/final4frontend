@@ -11,7 +11,7 @@ const AdminDashboard = () => {
     const [activeCustomers, setActiveCustomers] = useState([]);
     const [logs, setLogs] = useState([]);
     const [search, setSearch] = useState('');
-    const [currentSection, setCurrentSection] = useState(null);
+    const [currentSection, setCurrentSection] = useState('dashboard');
     const [plans, setPlans] = useState([]);
     const token = localStorage.getItem('token');
     const [statistics, setStatistics] = useState({});
@@ -27,6 +27,7 @@ const AdminDashboard = () => {
 
     const fetchPendingCustomers = async (searchTerm = '') => {
         try {
+            const token=localStorage.getItem('token');
             const response = await axios.get('http://localhost:5004/services/get-pending-customers', {
                 params: { search: searchTerm }, // Pass the search term
                 headers: { Authorization: `Bearer ${token}` }
@@ -39,6 +40,7 @@ const AdminDashboard = () => {
     
     const fetchVerifiedCustomers = async (searchTerm = '') => {
         try {
+            const token=localStorage.getItem('token');
             const response = await axios.get('http://localhost:5004/services/get-verified-customers', {
                 params: { search: searchTerm }, // Pass the search term
                 headers: { Authorization: `Bearer ${token}` }
@@ -51,6 +53,7 @@ const AdminDashboard = () => {
     
     const fetchActiveCustomers = async (searchTerm = '') => {
         try {
+            const token=localStorage.getItem('token');
             const response = await axios.get('http://localhost:5004/services/get-activated-customers', {
                 params: { search: searchTerm }, // Pass the search term
                 headers: { Authorization: `Bearer ${token}` }
@@ -63,6 +66,7 @@ const AdminDashboard = () => {
 
     const fetchDocumentVerificationLogs = async (searchTerm = '') => {
         try {
+            const token=localStorage.getItem('token');
             const response = await axios.get('http://localhost:5004/services/get-document-verification-logs', {
                 params: { search: searchTerm },
                 headers: { Authorization: `Bearer ${token}` }
@@ -82,6 +86,7 @@ const AdminDashboard = () => {
     };
     const fetchPlans = async () => {
         try {
+            const token=localStorage.getItem('token');
             const response = await axios.get('http://localhost:5004/services/getplans', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -94,6 +99,7 @@ const AdminDashboard = () => {
     const handleActivateService = async (serviceId) => {
         // Implement service activation logic
         try {
+            const token=localStorage.getItem('token');
             await axios.post(`http://localhost:5004/services/activate-service`, { serviceId }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -109,6 +115,7 @@ const AdminDashboard = () => {
     
         const fetchStatistics = async () => {
             try {
+                const token=localStorage.getItem('token');
                 const response = await axios.get('http://localhost:5004/services/statistics', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -156,17 +163,17 @@ const AdminDashboard = () => {
             </nav>
 
             <nav className="submenu-navbar">
-            <button onClick={() => setCurrentSection('dashboard')}>Dashboard</button>
-                <button onClick={() => setCurrentSection('pending')}>Pending Customers</button>
-                <button onClick={() => setCurrentSection('verified')}>Verified Customers</button>
-                <button onClick={() => setCurrentSection('activated')}>Activated Customers</button>
-                <button onClick={() => setCurrentSection('logs')}>Document Verification Logs</button>
-                <button onClick={() => setCurrentSection('viewPlans')}>View Plans</button> {/* Button for View Plans */}
+            <button className={currentSection === 'dashboard' ? 'active' : ''} onClick={() => setCurrentSection('dashboard')}>Dashboard</button>
+                <button className={currentSection === 'pending' ? 'active' : ''}onClick={() => setCurrentSection('pending')}>Pending Customers</button>
+                <button className={currentSection === 'verified' ? 'active' : ''}onClick={() => setCurrentSection('verified')}>Verified Customers</button>
+                <button className={currentSection === 'activated' ? 'active' : ''}onClick={() => setCurrentSection('activated')}>Activated Customers</button>
+                <button className={currentSection === 'logs' ? 'active' : ''}onClick={() => setCurrentSection('logs')}>Document Verification Logs</button>
+                <button className={currentSection === 'viewPlans' ? 'active' : ''}onClick={() => setCurrentSection('viewPlans')}>View Plans</button> {/* Button for View Plans */}
                 <button onClick={() => window.location.href = '/admin-register'}>Register New Admin</button>
             </nav>
             {currentSection === 'dashboard' &&  (
                 <div className="dashboard-content">
-                    <h2>Statistics Overview</h2>
+                    
                     <div className="charts-container">
                         <div className="chart">
                             <h3>Plan Type Distribution</h3>
@@ -197,7 +204,7 @@ const AdminDashboard = () => {
             {currentSection === 'activated' && <CustomerTable customers={activeCustomers} status="Active" />}
             {currentSection === 'logs' && (
     <div className="dashboard-section">
-        <h2>Document Verification Logs</h2>
+        
         <table className="customer-table"> {/* Reuse customer-table styling */}
             <thead>
                 <tr>
@@ -295,7 +302,7 @@ const CustomerTable = ({ customers, status, onActivate }) => {
                                 <td>{customer.first_name}</td>
                                 <td>{customer.last_name}</td>
                                 <td>{customer.email}</td>
-                                <td>{customer.documents.map(doc => doc.verificationStatus).join(', ')}</td>
+                                <td>{customer.documents && customer.documents.map(doc => doc.verificationStatus).join(', ')}</td>
                                 <td>{customer.services && customer.services.length > 0
                                         ? customer.services.map(service => service.name).join(', ')
                                         : 'No services requested'}</td>

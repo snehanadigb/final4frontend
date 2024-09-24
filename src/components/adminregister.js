@@ -21,7 +21,11 @@ const AdminRegister = () => {
     setFormValid(true);
     return true;
   };
+  const handleHomeClick=()=>{
+    
 
+    navigate('/landing-page');
+  }
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -30,10 +34,15 @@ const AdminRegister = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5004/admin/register', { name, email, password });
+      const token=localStorage.getItem('token');
+      const response = await axios.post('http://localhost:5004/admin/register', { name, email, password }, {headers: {
+        'Authorization': `Bearer ${token}`
+       
+      },});
       setMessage(response.data.message);
 
       if (response.status === 201) {
+        
         navigate('/admin-login');
       }
     } catch (error) {
@@ -51,10 +60,12 @@ const AdminRegister = () => {
             <img src={logo} alt="IndiTel Logo" className="logo-image" />
             <h1 className="company-name">Welcome to IndiTel</h1>
           </div>
+          <button className="home1-button" onClick={handleHomeClick}>
+          Home
+        </button>
         </header>
-        <h1>We're holding the door for you!</h1>
-        <p>Login now and manage all your
-           Inditel services</p>
+        <h1>Admin Register</h1>
+        <p>Register as an admin to oversee IndiTel's  services and streamline customer management</p>
       </div>
 
       {/* Right section with form */}

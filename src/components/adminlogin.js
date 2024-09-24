@@ -42,7 +42,10 @@ const AdminLogin = () => {
       console.error('Error during admin login:', error);
     }
   };
-
+  const handleHomeClick=()=>{
+    localStorage.removeItem('token');
+    navigate('/landing-page');
+  }
   // Navigate to the registration page
   const goToRegister = () => {
     navigate('/admin-register');
@@ -54,17 +57,24 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="login-page">
-      <header className="login-header">
-        <div className="logo">
-          <img src={logo} alt="IndiTel Logo" className="logo-image" />
-          <h1 className="company-name">Welcome to IndiTel</h1>
-        </div>
-      </header>
-
+    <div className="register-container">
+      <div className="register-left">
+        <header className="admin-header">
+          <div className="logo">
+            <img src={logo} alt="IndiTel Logo" className="logo-image" />
+            <h1 className="company-name">Welcome to IndiTel</h1>
+          </div>
+          <button className="home1-button" onClick={handleHomeClick}>
+          Home
+        </button>
+        </header>
+        <h1>Admin Login</h1>
+        <p>Securely log in to manage and monitor IndiTel’s services and customer operations.</p>
+      </div>
+    <div className='register-right'>
       <main className="login-main">
         <form className="login-form" onSubmit={handleLogin}>
-          <h2>Admin Login</h2>
+        
           <input
             type="email"
             value={email}
@@ -84,10 +94,14 @@ const AdminLogin = () => {
           <button type="submit" className="login-button">Login</button>
           {error && <p className="error-message">{error}</p>}
           {!formValid && <p className="error-message">Please enter valid details</p>}
-          <p className="forgot-password" onClick={goToForgotPassword}>Forgot Password?</p>
+          <a className="forgot-password" onClick={goToForgotPassword}>Forgot Password?</a>
         </form>
+        <p className="register-prompt">
+            Not registered?{' '}
+            <span className="register-link" onClick={goToRegister}>Register here</span></p>
         {/* <p className="register-link" onClick={goToRegister}>New admin? Register here</p> */}
       </main>
+    </div>
     </div>
   );
 };

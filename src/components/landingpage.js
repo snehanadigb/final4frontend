@@ -16,6 +16,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
+
         const response = await fetch('http://localhost:5004/services/getplans'); // Adjust endpoint as necessary
         const data = await response.json();
         setPlans(data);

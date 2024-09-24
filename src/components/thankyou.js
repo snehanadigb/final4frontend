@@ -7,12 +7,14 @@ const ThankYou = () => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
+    localStorage.removeItem('customerID');
+    localStorage.removeItem('authToken');
     navigate('/landing-page');  // Redirect to home page (or another relevant page)
   };
 
   return (
     <div className="thank-you-page">
-      <header className="thank-you-header">
+      <header className="admin-header">
         <div className="logo">
           <img src={logo} alt="IndiTel Logo" className="logo-image" />
           <h1 className="company-name">Welcome to IndiTel</h1>

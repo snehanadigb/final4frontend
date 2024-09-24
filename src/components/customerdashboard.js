@@ -28,6 +28,7 @@ const CustomerDashboard = () => {
   useEffect(() => {
     const fetchCustomerDetails = async () => {
       try {
+        const token = localStorage.getItem('authToken');
         const response = await axios.get(`http://localhost:5004/customers/email/${customeremail}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -70,6 +71,7 @@ const CustomerDashboard = () => {
     formData.append('document', documentFile);
 
     try {
+      const token = localStorage.getItem('authToken');
       await axios.post(`http://localhost:5004/documents/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -90,12 +92,14 @@ const CustomerDashboard = () => {
 
   const handleServiceSelection = () => {
     localStorage.setItem('customerId', customerId);
+     localStorage.setItem('authToken',token);
     navigate('/select-service');
   };
 
   const handleViewPlanDetails = async (planId) => {
     console.log(planId);
     try {
+      const token = localStorage.getItem('authToken');
       const response = await axios.get(`http://localhost:5004/services/getplans/${planId}`, 
         {
         headers: { Authorization: `Bearer ${token}` },

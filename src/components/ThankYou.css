@@ -66,18 +66,20 @@ body, html {
     max-width: 600px; /* Limit the width of text for better readability */
 }
 
-.home-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 12px 20px;
+.home1-button {
+    background-color: #fff;
+    color: #007bff;
+    border: 2px solid #007bff;
     border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .home-button:hover {
-    background-color: #45a049;
+    background-color: #007bff;
 }
 
 /* Responsive design */
