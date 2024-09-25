@@ -75,7 +75,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## Snapshots
 
 ### LandingPage
-![Landingpage](https://drive.google.com/uc?export=view&id=1g7xxcNxfS6kudh8WqSI-lw727eSWp7Ef)
+![Landingpage](https://drive.google.com/uc?export=view&id=1OF5z0rtu05YhbeD-TCO6TNu8XoQ7dTo2)
 
 ### LandingPage_contd.
 ![LandingPage](https://drive.google.com/uc?export=view&id=1WqXBEJnqwLB71v7cW1f_EZnRsT3vOPr5)
