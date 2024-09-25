@@ -80,6 +80,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### LandingPage_contd.
 ![LandingPage](https://drive.google.com/uc?export=view&id=1sxeEcBuWBgVIRuW2j2-Lu-te1mRKJW7I)
 
+### plans
+![plans](https://drive.google.com/uc?export=view&id=1cmhDxM1LMLB_Kyx21daR1AC8y3sgt9Qf)
+
 ### Registration Page
 ![Registration page](https://drive.google.com/uc?export=view&id=1EOtExGDcBi4KxZOtRznGhW7G8Ciy1YnZ)
 
