@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Case Study-1:Telecom Customer Onboarding System
+## Problem Statement:
+Develop a Customer Onboarding System for a telecom company to streamline the process of registering new customers,verifying their documents and activating their services.
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +71,39 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Snapshots
+
+### LandingPage
+![Landingpage](https://drive.google.com/uc?export=view&id=1OF5z0rtu05YhbeD-TCO6TNu8XoQ7dTo2)
+
+### LandingPage_contd.
+![LandingPage](https://drive.google.com/uc?export=view&id=1sxeEcBuWBgVIRuW2j2-Lu-te1mRKJW7I)
+
+### plans
+![plans](https://drive.google.com/uc?export=view&id=1cmhDxM1LMLB_Kyx21daR1AC8y3sgt9Qf)
+
+### Registration Page
+![Registration page](https://drive.google.com/uc?export=view&id=1EOtExGDcBi4KxZOtRznGhW7G8Ciy1YnZ)
+
+### Customer Login
+![Customer Login](https://drive.google.com/uc?export=view&id=1z7G_yA2Z6W41NcpkeL_akYvP7njFmkJt)
+
+### Customer Dashboard
+![Customer Dashboard](https://drive.google.com/uc?export=view&id=1RVG_DzL2KacNoEjn2KwRg1m-Nx8HZDaG)
+
+### Admin Login
+![Admin Login](https://drive.google.com/uc?export=view&id=1oDvN0jfMv228lKcB5y_Hd9zfHG2UH5Dn)
+
+### Admin Dashboard
+![Admin Dashboard](https://drive.google.com/uc?export=view&id=1H6Zfg3SNx5dZi1yiQN7pH36ZAKjNnjKx)
+
+### Testimonials
+![testimonials](https://drive.google.com/uc?export=view&id=1XDsp9BSYPZ8WB9JzXsAJ4mnsFsmaRFKf)
+
+
+
+
+
+
+
