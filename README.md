@@ -98,6 +98,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Admin Dashboard
 ![Admin Dashboard](https://drive.google.com/uc?export=view&id=1H6Zfg3SNx5dZi1yiQN7pH36ZAKjNnjKx)
 
+### Testimonials
+![testimonials](https://drive.google.com/uc?export=view&id=1XDsp9BSYPZ8WB9JzXsAJ4mnsFsmaRFKf)
+
 
 
 
