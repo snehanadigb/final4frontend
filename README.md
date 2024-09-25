@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Case Study-1:Telecom Customer Onboarding System
+## Problem Statement:
+Develop a Customer Onboarding System for a telecom company to streamline the process of registering new customers,verifying their documents and activating their services.
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +71,33 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Snapshots
+
+### LandingPage
+![Landingpage](https://drive.google.com/uc?export=view&id=1g7xxcNxfS6kudh8WqSI-lw727eSWp7Ef)
+
+### LandingPage_contd.
+![LandingPage](https://drive.google.com/uc?export=view&id=1WqXBEJnqwLB71v7cW1f_EZnRsT3vOPr5)
+
+### Registration Page
+![Registration page](https://drive.google.com/uc?export=view&id=1EOtExGDcBi4KxZOtRznGhW7G8Ciy1YnZ)
+
+### Customer Login
+![Customer Login](https://drive.google.com/uc?export=view&id=1Oaz1fpbmWM-8kg70N3AEM3C7ZRjymKnn)
+
+### Customer Dashboard
+![Customer Dashboard](https://drive.google.com/uc?export=view&id=1RVG_DzL2KacNoEjn2KwRg1m-Nx8HZDaG)
+
+### Admin Login
+![Admin Login](https://drive.google.com/uc?export=view&id=1oDvN0jfMv228lKcB5y_Hd9zfHG2UH5Dn)
+
+### Admin Dashboard
+![Admin Dashboard](https://drive.google.com/uc?export=view&id=1H6Zfg3SNx5dZi1yiQN7pH36ZAKjNnjKx)
+
+
+
+
+
+
+
