@@ -17,7 +17,7 @@ const LandingPage = () => {
     const fetchPlans = async () => {
       try {
 
-        const response = await fetch('http://localhost:5004/services/getplans'); // Adjust endpoint as necessary
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/services/getplans`); // Adjust endpoint as necessary
         const data = await response.json();
         setPlans(data);
         setFilteredPlans(data); // Initialize filtered plans

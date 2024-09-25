@@ -16,7 +16,7 @@ const ServiceSelection = () => {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
-        const response = await axios.get('http://localhost:5004/services/getplans');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/getplans`);
         setPlans(response.data);
         setFilteredPlans(response.data);
       } catch (error) {
@@ -54,7 +54,7 @@ const ServiceSelection = () => {
       setSelectedPlanId(localStorage.getItem('selectPlanId'));
 
       await axios.post(
-        'http://localhost:5004/services/select-service',
+        `${process.env.REACT_APP_BACKEND_PORT}/services/select-service`,
         {
           planId: selectedPlanId,
           customerId: parseInt(customerId),

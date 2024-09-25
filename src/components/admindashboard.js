@@ -15,6 +15,7 @@ const AdminDashboard = () => {
     const [plans, setPlans] = useState([]);
     const token = localStorage.getItem('token');
     const [statistics, setStatistics] = useState({});
+    
 
     useEffect(() => {
         fetchPendingCustomers();
@@ -28,7 +29,7 @@ const AdminDashboard = () => {
     const fetchPendingCustomers = async (searchTerm = '') => {
         try {
             const token=localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5004/services/get-pending-customers', {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/get-pending-customers`, {
                 params: { search: searchTerm }, // Pass the search term
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -41,7 +42,7 @@ const AdminDashboard = () => {
     const fetchVerifiedCustomers = async (searchTerm = '') => {
         try {
             const token=localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5004/services/get-verified-customers', {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/get-verified-customers`, {
                 params: { search: searchTerm }, // Pass the search term
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -54,7 +55,7 @@ const AdminDashboard = () => {
     const fetchActiveCustomers = async (searchTerm = '') => {
         try {
             const token=localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5004/services/get-activated-customers', {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/get-activated-customers`, {
                 params: { search: searchTerm }, // Pass the search term
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -67,7 +68,7 @@ const AdminDashboard = () => {
     const fetchDocumentVerificationLogs = async (searchTerm = '') => {
         try {
             const token=localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5004/services/get-document-verification-logs', {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/get-document-verification-logs`, {
                 params: { search: searchTerm },
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -87,7 +88,7 @@ const AdminDashboard = () => {
     const fetchPlans = async () => {
         try {
             const token=localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5004/services/getplans', {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/getplans`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setPlans(response.data); // Set plans from API response
@@ -100,7 +101,7 @@ const AdminDashboard = () => {
         // Implement service activation logic
         try {
             const token=localStorage.getItem('token');
-            await axios.post(`http://localhost:5004/services/activate-service`, { serviceId }, {
+            await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/services/activate-service`, { serviceId }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert('Service activated successfully!');
@@ -116,7 +117,7 @@ const AdminDashboard = () => {
         const fetchStatistics = async () => {
             try {
                 const token=localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5004/services/statistics', {
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/statistics`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setStatistics(response.data);

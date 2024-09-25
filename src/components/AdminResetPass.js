@@ -26,7 +26,7 @@ const AdminResetPassword = () => {
     try {
         const email = localStorage.getItem('email');
         console.log(email);
-      const response = await axios.post('http://localhost:5004/admin/reset-password', { email,  newPassword });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/admin/reset-password`, { email,  newPassword });
 
       if (response.status === 200) {
         setMessage('Password reset successfully');

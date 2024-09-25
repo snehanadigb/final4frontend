@@ -16,6 +16,8 @@ const CustomerDashboard = () => {
   const [hasService, setHasService] = useState(false);
   const [planDetails, setPlanDetails] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const onboardingSteps = [
@@ -29,7 +31,7 @@ const CustomerDashboard = () => {
     const fetchCustomerDetails = async () => {
       try {
         const token = localStorage.getItem('authToken');
-        const response = await axios.get(`http://localhost:5004/customers/email/${customeremail}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/customers/email/${customeremail}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -69,10 +71,11 @@ const CustomerDashboard = () => {
 
     const formData = new FormData();
     formData.append('document', documentFile);
-
+    setLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      await axios.post(`http://localhost:5004/documents/upload`, formData, {
+
+      await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/documents/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
@@ -80,13 +83,16 @@ const CustomerDashboard = () => {
         params: { customerId }
       }, );
 
-      setAlertMessage('Document uploaded successfully!');
+      setAlertMessage('Document verified successfully!');
       setVerificationStatus('Verified');
       setDocumentFile(null);
       setHasService(false);
     } catch (error) {
       console.error('Error uploading document:', error);
-      setErrorMessage('There was an error uploading the document.');
+      setAlertMessage('There was an error verify the document.please upload your aadhar card image again');
+    }
+    finally {
+      setLoading(false); // End loading after the request is complete
     }
   };
 
@@ -100,7 +106,7 @@ const CustomerDashboard = () => {
     console.log(planId);
     try {
       const token = localStorage.getItem('authToken');
-      const response = await axios.get(`http://localhost:5004/services/getplans/${planId}`, 
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_PORT}/services/getplans/${planId}`, 
         {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -161,12 +167,17 @@ const CustomerDashboard = () => {
   }
 
   return (
-    <div className="container-fluid">
+    <div className={`container-fluid  ${loading ? 'blur' : ''}`}>
+    {loading && (
+      <div className="loading-overlay">
+        <div className="spinner"></div>
+      </div>
+    )}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3">
         <div className="container-fluid">
-          <div className="ml-auto d-flex">
+          <div className="admin-header">
             <span className="navbar-text text-white mr-3">Welcome, {customerDetails.first_name}</span>
-            <button className="btn btn-outline-light" onClick={handleLogout}>Logout</button>
+            <button className="home1-button" onClick={handleLogout}>Logout</button>
           </div>
         </div>
       </nav>

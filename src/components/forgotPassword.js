@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5004/auth/forgot-password', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/auth/forgot-password`, {
         email,
       });
       localStorage.setItem('email',email);

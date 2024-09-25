@@ -13,7 +13,7 @@ const CustomerLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5004/auth/login', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/auth/login`, {
         email,
         password,
       });

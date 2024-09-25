@@ -158,7 +158,7 @@ const DocumentUpload = () => {
     formData.append('document', file);
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5004/documents/upload', formData, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/documents/upload`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

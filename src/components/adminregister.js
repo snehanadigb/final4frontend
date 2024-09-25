@@ -35,7 +35,7 @@ const AdminRegister = () => {
 
     try {
       const token=localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5004/admin/register', { name, email, password }, {headers: {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/admin/register`, { name, email, password }, {headers: {
         'Authorization': `Bearer ${token}`
        
       },});

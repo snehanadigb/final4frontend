@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './AddPlan.css'; // Enhanced styles in CSS
+import './AddPlan.css';
+import { useNavigate } from 'react-router-dom'; // Enhanced styles in CSS
 
 const AddPlan = () => {
   const [name, setName] = useState('');
@@ -11,7 +12,9 @@ const AddPlan = () => {
     fiberLandline: { speed: '', calls: '' },
     dth: { value: '' },
   });
+ 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let formErrors = {};
@@ -25,13 +28,19 @@ const AddPlan = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm();
+    const token =localStorage.getItem('token');
     if (Object.keys(formErrors).length === 0) {
       try {
-        await axios.post('http://localhost:5004/services/plans', { name, description, price, servicesIncluded, planType });
+        await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/services/plans`, { name, description, price, servicesIncluded, planType },{
+           headers: { Authorization: `Bearer ${token}`}
+        });
         alert('Plan added successfully!');
+        
         setName(''); setDescription(''); setPrice(''); setPlanType('');
         setServicesIncluded({ fiberLandline: { speed: '', calls: '' }, dth: { value: '' } });
+        
         setErrors({});
+        
       } catch (error) {
         alert('Failed to add plan');
       }

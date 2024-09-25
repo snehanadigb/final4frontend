@@ -13,7 +13,7 @@ const AdminForgotPassword = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5004/admin/forgot-password', { email });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/admin/forgot-password`, { email });
         localStorage.setItem('email',email);
       if (response.status === 200) {
         setMessage('Password reset email sent successfully');

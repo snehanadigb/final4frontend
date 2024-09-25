@@ -17,7 +17,7 @@ const ResetPassword = () => {
     const email = searchParams.get('email');
 
     try {
-      const response = await axios.post('http://localhost:5004/auth/reset-password', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/auth/reset-password`, {
         email,
         token,
         newPassword,

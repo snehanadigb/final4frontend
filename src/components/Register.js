@@ -3,7 +3,8 @@ import axios from 'axios';
 import './Registration.css';
 import logo from './Copy of T.png';
 import img from './1.png' 
-import { useNavigate } from 'react-router-dom';// Logo used in CustomerLogin
+import { useNavigate } from 'react-router-dom';
+//require('dotenv').config();// Logo used in CustomerLogin
 
 const Registration = () => {
   const [f_name, setFName] = useState('');
@@ -29,7 +30,7 @@ const Registration = () => {
 
   const checkIfAlreadyRegistered = async () => {
     try {
-      const response = await axios.post('http://localhost:5004/auth/check-status', { email });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/auth/check-status`, { email });
       if (response.data.isVerified) {
         setError('This email is already registered and verified. Please log in.');
       } else if (response.data.isRegistered) {
@@ -56,7 +57,7 @@ const Registration = () => {
     setLoading(true);
     try {
       // Make a POST request to your backend registration API
-      const response = await axios.post('http://localhost:5004/auth/register', { 
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/auth/register`, { 
         f_name, l_name, email, password, phone_no, address 
       });
   
@@ -112,7 +113,7 @@ const Registration = () => {
     try {
       const token = localStorage.getItem('authToken');
       //const email=localStorage.getItem('email');
-      const response = await axios.post('http://localhost:5004/auth/verify-email', { email, otp }, 
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/auth/verify-email`, { email, otp }, 
         {headers: { 'Authorization': `Bearer ${token}` }
     },);
       
@@ -134,7 +135,7 @@ const Registration = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const response = await axios.post('http://localhost:5004/auth/resend-otp', { email }, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_PORT}/auth/resend-otp`, { email }, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.status === 200) {
