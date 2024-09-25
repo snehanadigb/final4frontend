@@ -78,13 +78,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ![Landingpage](https://drive.google.com/uc?export=view&id=1OF5z0rtu05YhbeD-TCO6TNu8XoQ7dTo2)
 
 ### LandingPage_contd.
-![LandingPage](https://drive.google.com/uc?export=view&id=1WqXBEJnqwLB71v7cW1f_EZnRsT3vOPr5)
+![LandingPage](https://drive.google.com/uc?export=view&id=1sxeEcBuWBgVIRuW2j2-Lu-te1mRKJW7I)
 
 ### Registration Page
 ![Registration page](https://drive.google.com/uc?export=view&id=1EOtExGDcBi4KxZOtRznGhW7G8Ciy1YnZ)
 
 ### Customer Login
-![Customer Login](https://drive.google.com/uc?export=view&id=1Oaz1fpbmWM-8kg70N3AEM3C7ZRjymKnn)
+![Customer Login](https://drive.google.com/uc?export=view&id=1z7G_yA2Z6W41NcpkeL_akYvP7njFmkJt)
 
 ### Customer Dashboard
 ![Customer Dashboard](https://drive.google.com/uc?export=view&id=1RVG_DzL2KacNoEjn2KwRg1m-Nx8HZDaG)
